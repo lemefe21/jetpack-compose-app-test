@@ -1,5 +1,6 @@
 package com.fleme.jetpackstore
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,8 +10,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,43 +25,50 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            JetpackStoreTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    CardItem("Android")
-                }
-            }
+            CardItem("Android")
         }
     }
 }
 
 @Composable
 fun CardItem(name: String) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.icon_jetpack_compose),
-            contentDescription = "Item",
-            modifier = Modifier.size(56.dp).padding(end = 2.dp)
-        )
-        Column {
-            Text(
-                text = "Hello $name!"
-            )
-            Text(
-                text = "Welcome to Jetpack Store.",
-                modifier = Modifier.padding(start = 12.dp)
-            )
+    JetpackStoreTheme {
+        Card(backgroundColor = MaterialTheme.colors.background) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.icon_jetpack_compose),
+                    contentDescription = "Item",
+                    modifier = Modifier
+                        .size(56.dp)
+                        .padding(end = 2.dp)
+                )
+                Column {
+                    Text(
+                        text = "Hello $name!"
+                    )
+                    Text(
+                        text = "Welcome to Jetpack Store.",
+                        color = MaterialTheme.colors.primary,
+                        modifier = Modifier.padding(start = 12.dp)
+                    )
+                }
+            }
         }
     }
 }
 
 @Preview(showBackground = true)
+@Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun DefaultPreview() {
-    JetpackStoreTheme {
-        CardItem("Android")
-    }
+    CardItem("Android")
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreviewToUsers() {
+    CardItem("User")
 }

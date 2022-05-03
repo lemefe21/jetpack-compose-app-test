@@ -41,9 +41,7 @@ fun CardItem(name: String) {
                 Image(
                     painter = painterResource(id = R.drawable.icon_jetpack_compose),
                     contentDescription = "Item",
-                    modifier = Modifier
-                        .size(56.dp)
-                        .padding(end = 2.dp)
+                    modifier = Modifier.size(56.dp).padding(end = 2.dp)
                 )
                 Column {
                     Text(

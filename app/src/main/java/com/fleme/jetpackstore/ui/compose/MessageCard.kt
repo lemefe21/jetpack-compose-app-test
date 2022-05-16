@@ -1,5 +1,6 @@
 package com.fleme.jetpackstore.ui.compose
 
+import android.content.res.Configuration
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
@@ -24,9 +25,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.fleme.jetpackstore.R
 import com.fleme.jetpackstore.data.Message
+import com.fleme.jetpackstore.ui.theme.JetpackStoreTheme
 
 @Composable
 fun MessageCard(msg: Message) {
@@ -79,3 +82,42 @@ fun MessageCard(msg: Message) {
 }
 
 private fun checkStateToGetMaxLines(isExpanded: Boolean) = if (isExpanded) Int.MAX_VALUE else 1
+
+@Preview(
+    name = "Light Mode",
+    showBackground = true
+)
+@Preview(
+    name = "Dark Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+fun PreviewMessageCard() {
+    JetpackStoreTheme {
+        MessageCard(
+            msg = Message(
+                auhtor = "Android",
+                body = "Jetpack Compose Component"
+            )
+        )
+    }
+}
+
+@Preview(
+    name = "Dark Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    showSystemUi = true
+)
+@Composable
+fun PreviewMessageCardWithSystemUi() {
+    JetpackStoreTheme {
+        MessageCard(
+            msg = Message(
+                auhtor = "Android",
+                body = "Jetpack Compose"
+            )
+        )
+    }
+}
